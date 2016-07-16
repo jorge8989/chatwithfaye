@@ -1,20 +1,23 @@
-function renderMessages() {
+function processChat() {
   var $messagesWindow = $('.messages');
   var $messageForm = $('.messages-form');
   var $messageInput = $('.message-input');
   var $messagesList = $('.messages-list');
 
-  $messagesWindow.scrollTop(400);
+  $messagesWindow.scrollTop($messagesWindow.prop("scrollHeight"));
   $messageForm.bind("ajax:success", function() {
-  	$messagesList.append('<li>' + $messageInput.val() + '</li>');
     $messageInput.val('');
     $messageInput.blur();
     $messageInput.focus();
-    $messagesWindow.scrollTop(400);
    });
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  var subscription = faye.subscribe("/foo", function(data) {
+    $messagesList.append('<li>' + data + '</li>');
+    $messagesWindow.scrollTop($messagesWindow.prop("scrollHeight"));
+  });
 }
 $(function() {
   if (typeof $('.chat') !== undefined) {
-    renderMessages();
+    processChat();
   }
 });
