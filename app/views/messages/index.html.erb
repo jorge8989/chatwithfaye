@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Chat</h1>
+<div class="messages">
+  <ul class="messages-list">
+    <% @messages.each do |message| %>
+      <li><%= message.content %></li>
+    <% end %>
+  </ul>
+</div>
+<br />
+<%= form_for(Message.new, html: {remote: true, class: 'messages-form'}) do |f| %>
+  <%= f.text_field :content, class: 'message-input' %>
+  <%= f.submit 'send' %>
+<% end %>

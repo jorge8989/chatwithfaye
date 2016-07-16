@@ -1,0 +1,9 @@
+.messages {
+  border: 1px solid #727272;
+  height: 400px;
+  overflow: auto;
+  .messages-list {
+  	margin-left: -2rem;
+  	list-style: none;
+  }
+}
