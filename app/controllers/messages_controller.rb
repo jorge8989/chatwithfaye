@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   include ApplicationHelper
 
   def index
-    @messages = Message.all
+    @messages = Message.order('created_at ASC')
   end
 
   def create
