@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require messages
 //= require turbolinks
-//= require_tree .

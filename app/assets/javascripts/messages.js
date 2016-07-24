@@ -16,8 +16,10 @@ function processChat() {
     $messagesWindow.scrollTop($messagesWindow.prop("scrollHeight"));
   });
 }
-$(function() {
-  if (typeof $('.chat') !== undefined) {
+
+var ready = function() {
+  if ($('.messages').length > 0) {
     processChat();
   }
-});
+}
+$(document).on('turbolinks:load', ready);
